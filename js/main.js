@@ -21,13 +21,9 @@ let imgCode;
 let imgCodeNextDay;
 const weekDay = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 const Month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-function getDayName (i=0) {
+function getDayName () {
     let day = new Date();
-    if (day.getDay()+i === 7) {
-        i = -5;
-        return weekDay[day.getDay()+i];
-    }
-    else return weekDay[day.getDay()+i];
+    return weekDay[day.getDay()];
 }
 function getMonth () {
     let month = new Date();
@@ -92,7 +88,7 @@ function showTodayWeather () {
 }
 function showNextDaysWeather () {
     for (let i=0; i<2; i++) {
-        NextDayTitle[i].innerHTML = `<p class = "fs-3">${getDayName(i+1)}</p>`;
+        NextDayTitle[i].innerHTML = `<p class = "fs-3">${weekDay[new Date(weatherData.forecast.forecastday[i+1].date).getDay()]}</p>`;
         nextDayContent[i].innerHTML = `
             <img src="${getNextDayWeatherIcon(i+1)}" alt= "">
             <p class = "fs-2">${weatherData.forecast.forecastday[i+1].day.avgtemp_c}&#8451;</p>
